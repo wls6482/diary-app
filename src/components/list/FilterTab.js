@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { FILTERS_LABELS } from '../../constants'
+
+import { FILTER_LABELS } from '../../constants'
 
 const Container = styled.ul`
   display: flex;
@@ -29,21 +30,26 @@ const Menu = styled.li`
       }
   `}
 `
-
-const FilterTab = () => {
-  /**
-   * const [a, b] = [1, 2] ==> a = 1, b = 2
-   *
-   * [
-   *  ["SAD", "슬픔"] => type: SAD, label: 슬픔
-   * ]
-   */
+const FilterTab = ({ selectedFilter, onClick }) => {
   return (
-    <Container>
-      {Object.entries(FILTERS_LABELS).map(([type, label]) => {
-        return <Menu key={type}>{label}</Menu>
-      })}
-    </Container>
+    <div>
+      <Container>
+        {Object.entries(FILTER_LABELS).map(([type, label]) => {
+          return (
+            <Menu
+              key={type}
+              active={selectedFilter === type}
+              onClick={() => {
+                onClick(type)
+              }}
+            >
+              {label}
+            </Menu>
+          )
+        })}
+        <Menu />
+      </Container>
+    </div>
   )
 }
 

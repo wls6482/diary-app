@@ -8,6 +8,7 @@ import ModifyPage from './pages/Modify'
 import WritePage from './pages/Write'
 
 import ResetStyles from './components/shared/ResetStyles'
+import { FilterContextProvider } from './contexts/filter'
 
 const Container = styled.div`
   max-width: 800px;
@@ -22,28 +23,30 @@ const Container = styled.div`
 
 const App = () => {
   return (
-    <Container>
-      <ResetStyles />
-      <BrowserRouter>
-        {/* <div>나는 유지된다 ...</div> */}
-        <Routes>
-          <Route path="/" element={<ListPage />} />
-          <Route path="/write" element={<WritePage />} />
-          {/* {detail/123 ==> id = 123, detail/222 ==> id=222} */}
-          <Route path="/detail/:id" element={<DetailPage />} />
-          <Route path="/modify" element={<ModifyPage />} />
-          <Route path="/banner" element={<BannerPage />} />
-          <Route
-            path="*"
-            element={
-              <div>
-                <h1>찾으시는 페이지가 없어요</h1>
-              </div>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </Container>
+    <FilterContextProvider>
+      <Container>
+        <ResetStyles />
+        <BrowserRouter>
+          {/* <div>나는 유지된다 ...</div> */}
+          <Routes>
+            <Route path="/" element={<ListPage />} />
+            <Route path="/write" element={<WritePage />} />
+            {/* {detail/123 ==> id = 123, detail/222 ==> id=222}  */}
+            <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/modify" element={<ModifyPage />} />
+            <Route path="/banner" element={<BannerPage />} />
+            <Route
+              path="*"
+              element={
+                <div>
+                  <h1>찾으시는 페이지가 없어요</h1>
+                </div>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </Container>
+    </FilterContextProvider>
   )
 }
 

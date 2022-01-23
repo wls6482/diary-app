@@ -22,7 +22,7 @@ export const MOCKS = [
   },
 ]
 
-export const FILTERS_LABELS = {
+export const FILTER_LABELS = {
   All: '전체',
   SAD: '슬픔',
   GOOD: '좋음',
